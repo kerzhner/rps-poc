@@ -27,3 +27,12 @@ Please use the sublime package _JsPrettier_ for formatting. All of the defaults 
 ### Current state:
 
 ![screenshot](https://user-images.githubusercontent.com/12832034/40526428-44e37118-5f9b-11e8-8e63-c5fbaf9cae59.png 'screenshot')
+
+
+### Setup Phase for Player A and Player B
+
+
+
+
+### Game Play process for Player A and Player B
+
