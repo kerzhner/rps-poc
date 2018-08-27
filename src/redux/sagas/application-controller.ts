@@ -48,6 +48,8 @@ export default function* applicationControllerSaga(wallet: Wallet) {
 
           if (gameEngine.state.move) {
             // tslint:disable-next-line:no-console
+            console.log('calling', gameEngine.state)
+            // tslint:disable-next-line:no-console
             console.log(validTransition({from: gameEngine.state.move, to: newMove}))
             
           }

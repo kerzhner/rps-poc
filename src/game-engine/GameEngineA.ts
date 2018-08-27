@@ -12,6 +12,7 @@ import Reveal from './positions/Reveal';
 import Resting from './positions/Resting';
 import Conclude from './positions/Conclude';
 import { Wallet } from '../wallet';
+import { padBytes32 } from 'fmg-core';
 
 const fakeGameLibraryAddress = '0xc1912fee45d61c87cc5ea59dae31190fffff232d';
 
@@ -137,7 +138,7 @@ export default class GameEngineA {
 
     const { balances, turnNum, stake, channel, adjudicator } = this.state;
 
-    const salt = '0x123'; // todo: make random
+    const salt = padBytes32('0x123'); // todo: make random
 
     const newPosition = Propose.createWithPlayAndSalt(
       channel,
