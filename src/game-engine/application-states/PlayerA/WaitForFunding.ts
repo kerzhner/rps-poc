@@ -6,6 +6,5 @@ export default class WaitForFunding extends BasePlayerA {
 
   constructor({ channel, stake, balances }) {
     super({ channel, stake, balances });
-    
   }
 }

@@ -4,6 +4,19 @@ import Move from './Move';
 import { Player, State as ApplicationState } from './application-states';
 import { Wallet } from '../wallet';
 
+import { Drizzle, generateStore } from 'drizzle';
+// Import contracts
+import RockPaperScissorsGame from '../contracts/RockPaperScissorsGame.json';
+
+const options = {
+  contracts: [
+    RockPaperScissorsGame,
+  ],
+}
+
+const drizzleStore = generateStore(options)
+const drizzle = new Drizzle(options, drizzleStore)
+
 export type GameEngine = GameEngineA | GameEngineB;
 
 // todo: probably shouldn't be a class
@@ -25,4 +38,12 @@ export function fromState({ state, wallet }: { state: ApplicationState, wallet: 
     case Player.PlayerB:
       return GameEngineB.fromState({ state, wallet });
   }
+}
+
+export function validTransition({from, to}):
+{ from: Move, to: Move } {
+
+  const gameRules = drizzle.contracts.RockPaperScissorsGame;
+
+  return gameRules.methods.validTransition(from.state, to.state).call()
 }

@@ -137,7 +137,7 @@ export default class GameEngineA {
 
     const { balances, turnNum, stake, channel, adjudicator } = this.state;
 
-    const salt = 'salt'; // todo: make random
+    const salt = '0x123'; // todo: make random
 
     const newPosition = Propose.createWithPlayAndSalt(
       channel,
