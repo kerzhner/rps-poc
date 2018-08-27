@@ -19,7 +19,7 @@
   "include": [
     "truffle.ts",
     "migrations/*",
-    "test/*.ts",
+    
     "types/*"
   ]
 }

@@ -1,4 +1,4 @@
-import { take, put, actionChannel } from 'redux-saga/effects';
+import { take, put, actionChannel, select } from 'redux-saga/effects';
 
 import { MessageActionType, MessageAction } from '../actions/messages';
 import { GameActionType, GameAction } from '../actions/game';
@@ -6,8 +6,10 @@ import { setupGame, fromProposal, GameEngine } from '../../game-engine/GameEngin
 import { State } from '../../game-engine/application-states';
 import Move from '../../game-engine/Move';
 import { Wallet, WalletFundingAction, WalletFundingActionType } from '../../wallet';
+import { getContracts } from '../store';
 
 export default function* applicationControllerSaga(wallet: Wallet) {
+
   let gameEngine: GameEngine | null = null;
 
   const actionTypesFilter = [
@@ -44,6 +46,9 @@ export default function* applicationControllerSaga(wallet: Wallet) {
     } else {
       switch (action.type) {
         case MessageActionType.MESSAGE_RECEIVED:
+          const contracts = yield select(getContracts);
+          // tslint:disable-next-line:no-console
+          console.log(contracts);
           newState = gameEngine.receiveMove(Move.fromHex(action.message));
           break;
         case GameActionType.MOVE_SENT:
