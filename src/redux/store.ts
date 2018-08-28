@@ -1,10 +1,11 @@
+import { initDrizzle } from '../drizzle';
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { generateContractsInitialState, Drizzle } from 'drizzle';
+import { generateContractsInitialState } from 'drizzle';
 
+import RockPaperScissorsGame from '../contracts/RockPaperScissorsGame.json';
 import reducer from './reducers';
 import rootSaga from './sagas';
-import RockPaperScissorsGame from '../contracts/RockPaperScissorsGame.json';
 
 
 const sagaMiddleware = createSagaMiddleware();
@@ -22,8 +23,7 @@ const initialState = {
 };
 
 const store = createStore(reducer, initialState, enhancers); 
-// @ts-ignore
-const drizzle = new Drizzle(drizzleOptions, store);
+initDrizzle(store,drizzleOptions);
 sagaMiddleware.run(rootSaga);
 
 export default store;
